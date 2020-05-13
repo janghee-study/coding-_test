@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+		
+        //String []participant= {"marina", "josipa", "nikola", "vinko", "filipa"}	;
+        //String []completion= {"josipa", "filipa", "marina", "nikola"}; //vinko
+        //String []participant= {"mis", "stan", "mis", "ana"}	;
+        //String []completion= {"stan", "ana", "mis"}; //mis
+        String []participant= {"leo", "kiki", "eden"};
+        String []completion= {"eden","kiki"};
+        
+        System.out.println(solution.solution(participant,completion));
+    }
+}
+
+class Solution {
+    public String solution(String[] p, String[] c) {
+		Stack<String> stack = new Stack<String>();
+		for(int i=0;i<p.length;i++) {        	
+        	stack.push(p[i]);        	
+        }
+		
+        for(int j=0;j<=stack.size();j++) {
+	        for(int i=0;i<c.length;i++) {        	
+	        	if(c[i].contentEquals(stack.peek())) {
+	        		stack.pop();
+	        		break;
+	        	}
+	        }
+        }
+        return stack.peek();
+    }
+}
