@@ -33,3 +33,4 @@ class Solution {
         return stack.peek();
     }
 }
+//stack is to fail
