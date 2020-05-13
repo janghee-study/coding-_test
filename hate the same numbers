@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+		
+        int a=5;
+        int b=3;
+        System.out.println(solution.solution(a,b));
+    }
+}
+
+class Solution {
+    public long solution(int a, int b) {
+        long answer = 0;
+        int a1,b1;
+        if(a<b) {
+        	a1=a; b1=b;
+        }
+        else {
+        	a1=b; b1=a;        	
+        }        
+        for(int i=a1;i<=b1;i++) {        	
+        	answer+=i;        	
+        }
+        return answer;
+    }
+}
