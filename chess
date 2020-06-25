@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int m = sc.nextInt();            	
+    	char [][]str = new char[n][m];
+    	
+		for(int i=0; i<n; i++) {
+			String tmp = sc.next();
+			for(int j = 0; j<m; j++) {
+				str[i][j] = tmp.charAt(j);
+			}
+		}
+
+        int result = 987654321;
+                
+        for(int i=0;i+7<n;i++) {
+        	for(int j=0;j+7<m;j++) {        
+        	result = Math.min(result,Math.min(black(i,j,str),white(i,j,str)));        		
+        	}
+        }
+        System.out.println(result);
+    }
+
+	public static int black(int y, int x,char str[][]) {
+		
+		String[] BW = {"BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB"};
+		        
+		int cnt = 0;
+		for(int i=y;i<y+8;i++) {
+			for(int j=x;j<x+8;j++) {
+				if(BW[i-y].charAt(j-x)!=(str[i][j]))
+					cnt++;					
+			}
+		}
+		return cnt;
+	}
+	
+	public static int white(int y, int x,char str[][]) {
+		String[] WB = {"WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW"};
+		
+		int cnt = 0;
+		for(int i=y;i<y+8;i++) {
+			for(int j=x;j<x+8;j++) {
+				if(WB[i-y].charAt(j-x)!=(str[i][j]))
+					cnt++;					
+			}
+		}
+		return cnt;
+	}
+}
