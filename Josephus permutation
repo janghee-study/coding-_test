@@ -1,0 +1,29 @@
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+   public static void main(String[] args) {
+	   Scanner sc = new Scanner(System.in);
+	   Queue<Integer> queue = new LinkedList<Integer>();
+
+	   int input = sc.nextInt();
+	   int killnum = sc.nextInt();
+	   
+	   for(int i=1;i<=input;i++) {
+		   queue.add(i);		   
+	   }
+	   System.out.print("<");
+	   while(queue.size()!=1) {
+		   for(int j=1;j<killnum;j++) {
+			   queue.add(queue.peek());
+			   queue.remove();
+		   }
+		   System.out.print(queue.peek()+", ");
+		   queue.remove();
+	   }
+	   System.out.print(queue.peek());
+	   System.out.println(">");
+   }
+}
+//input 7 3
