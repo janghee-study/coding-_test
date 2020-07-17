@@ -1,0 +1,46 @@
+package histogram;
+
+import java.util.Scanner;
+
+public class Main {
+
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      
+      while(true) {
+    	  
+	      int Number = sc.nextInt();
+	      if(Number==0)break;
+	      
+	      int arr[] = new int[Number];
+	      
+	      for(int i=0;i<Number;i++) {
+	         arr[i]=sc.nextInt();
+	      }
+	      
+	      int temp = 0;
+	      int max = 0;
+	      int heightMin=987654321;
+	      
+	      for(int i=0;i<arr.length;i++) {
+	    	  heightMin = Math.min(heightMin, arr[i]);
+	      }
+	      
+	      for(int i=0;i<arr.length-1;i++) {
+	     
+	    	 if(arr[i]>arr[i+1]) {
+	    		 temp = 2*arr[i+1];
+	    	 }
+	    	 else if(arr[i]<arr[i+1]) {
+	    		 temp = 2*arr[i];
+	    	 }
+	    	 else {//같을때
+	    		 temp = arr[i]+arr[i+1];
+	    	 }
+	    	 max=Math.max(max, temp);
+	      }
+	      max=Math.max(max,arr.length*heightMin);
+	      System.out.println(max);
+      }
+   }////1~10000까지의 높이를 모두계산하는 방법도있음(계단수)
+}   ////1의 최고 넓이2의 최고 넓이 3의최고넓이(이중포문방법)
