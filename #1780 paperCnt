@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class main {
+   static int [][]paper;
+   static int zeroCnt=0;
+   static int plusoneCnt=0;
+   static int minusoneCnt=0;
+   
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int input = sc.nextInt();
+      
+      paper = new int[input][input];
+      for(int i=0;i<input;i++) {
+    	  for(int j=0;j<input;j++) {
+    		  paper[i][j]=sc.nextInt();
+    	  }
+      }
+      find(0,0,input,input);
+      System.out.println(minusoneCnt);
+      System.out.println(zeroCnt);
+      System.out.println(plusoneCnt);
+   }
+   
+   private static void find(int Start_x,int Start_y,int End_x,int End_y) {
+	   int sum = 0;
+	   for(int i = Start_x;i<End_x;i++) {
+		   for(int j=Start_y;j<End_y;j++) {
+			   sum+=paper[i][j];
+		   }
+	   }
+	   if(sum==0) {
+		   zeroCnt++;
+	   }
+	   else if(sum==-1*(End_x-Start_x)*(End_y-Start_y)) {
+		   minusoneCnt++;
+	   }
+	   else if(sum==(End_x-Start_x)*(End_y-Start_y)) {
+		   plusoneCnt++;
+	   }
+	   else {//9분면으로 나워서 정리함
+		   find(Start_x,				Start_y,	1*(End_x)/3,	1*(End_y)/3	);
+		   find(1*(Start_x+End_x)/3,	Start_y,	2*(End_x)/3,	1*(End_y)/3	);
+		   find(2*(Start_x+End_x)/3,	Start_y,	3*(End_x)/3,	1*(End_y)/3	);
+		   
+		   find(Start_x,				(Start_y+End_y)/3,	1*(Start_x+End_x)/3,	2*(Start_y+End_y)/3);
+		   find(1*(Start_x+End_x)/3,	(Start_y+End_y)/3,	2*(Start_x+End_x)/3,	2*(Start_y+End_y)/3);
+		   find(2*(Start_x+End_x)/3,	(Start_y+End_y)/3,	3*(Start_x+End_x)/3,	2*(Start_y+End_y)/3);
+		   
+		   find(Start_x,				2*(Start_y+End_y)/3,	1*(Start_x+End_x)/3,	(Start_y+End_y));
+		   find(1*(Start_x+End_x)/3,	2*(Start_y+End_y)/3,	2*(Start_x+End_x)/3,	(Start_y+End_y));
+		   find(2*(Start_x+End_x)/3,	2*(Start_y+End_y)/3,	3*(Start_x+End_x)/3,	(Start_y+End_y));
+	   }
+   }
+}
