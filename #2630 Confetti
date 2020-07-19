@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+   static int [][]paper;
+   static int whiteCnt=0;
+   static int blackCnt=0;
+   
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      
+      int input = sc.nextInt();
+      
+      paper = new int[input][input];
+      
+      for(int i=0;i<input;i++) {
+    	  for(int j=0;j<input;j++) {
+    		  paper[i][j]=sc.nextInt();
+    	  }
+      }
+      find(0,0,input,input);
+      System.out.println(whiteCnt);
+      System.out.println(blackCnt);
+   }
+   
+   public static void find(int Start_x,int Start_y,int End_x,int End_y) {
+	   int sum = 0;
+	   
+	   for(int i = Start_x;i<End_x;i++) {
+		   for(int j=Start_y;j<End_y;j++) {
+			   sum+=paper[i][j];
+		   }
+	   }
+	   if(sum==0) {
+		   whiteCnt++;
+	   }
+	   else if(sum==(End_x-Start_x)*(End_y-Start_y)) {
+		   blackCnt++;
+	   }
+	   else {//재귀함수로 1,2,3,4분면 확인
+		   find(Start_x,Start_y,(Start_x+End_x)/2,(Start_y+End_y)/2);
+		   find((Start_x+End_x)/2,Start_y,End_x,(Start_y+End_y)/2);
+		   find(Start_x,(Start_y+End_y)/2,(Start_x+End_x)/2,End_y);
+		   find((Start_x+End_x)/2,(Start_y+End_y)/2,End_x,End_y);
+	   }
+   }
+}
