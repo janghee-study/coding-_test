@@ -41,23 +41,22 @@ public class matrix {
 	    	//행과 열을 서로 곱을해주고 temp에 집어넣음
 	    	//행렬에 집어넣고 temp는 초기화
 	    	temp=0;
-	    	for(int x=0;x<first_column;x++) {
-	    		temp+=first[i][x]*second[x][i];
+	    	for(int x=0;x<first_column-1;x++) {///////////////
+	    		temp+=(first[i][x]*second[x][j]);
 		    	matrix[i][j]=temp;
 	    	}
-	    	
-	    	if(j==first_row)	j=0;
-	    	else 				j++;
-	    	i++;
+	    	if(j==3) {
+	    		i++;
+	    	}
+	    	j++;
 	    	cnt++;
 	    }
 	    
 		for(int x=0;x<first_row;x++) {
-			for(int y=0;y<first_column;y++) {
+			for(int y=0;y<second_column;y++) {
 				System.out.print(matrix[i][j]+" ");
 			}
 		System.out.println();
 		}
 	}
 }
-
