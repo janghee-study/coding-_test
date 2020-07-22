@@ -1,0 +1,63 @@
+import java.util.*;
+import java.io.*;
+
+public class matrix {
+
+	static int [][]first;
+	static int [][]second;
+	static int [][]matrix;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//입력부분//
+		int first_row = sc.nextInt();
+		int first_column = sc.nextInt();
+	    first = new int[first_row][first_column];
+		
+	    for(int i=0;i<first_row;i++) {
+			for(int j=0;j<first_column;j++) {
+				first[i][j]=sc.nextInt();
+			}
+		}
+		
+		int second_row = sc.nextInt();
+		int second_column = sc.nextInt();
+	    second = new int[second_row][second_column];
+	    
+	    for(int i=0;i<second_row;i++) {
+			for(int j=0;j<second_column;j++) {
+				second[i][j]=sc.nextInt();
+			}
+		}
+	    
+		//매트릭스사이즈 (3*2)*(2*3) 3*3사이즈 배열생성
+	    matrix=new int[first_row][second_column];
+	    int temp;
+	    int cnt=0;
+	    int i=0;
+	    int j=0;
+	    while(cnt<first_row*second_column) {
+	    	
+	    	//행과 열을 서로 곱을해주고 temp에 집어넣음
+	    	//행렬에 집어넣고 temp는 초기화
+	    	temp=0;
+	    	for(int x=0;x<first_column;x++) {
+	    		temp+=first[i][x]*second[x][i];
+		    	matrix[i][j]=temp;
+	    	}
+	    	
+	    	if(j==first_row)	j=0;
+	    	else 				j++;
+	    	i++;
+	    	cnt++;
+	    }
+	    
+		for(int x=0;x<first_row;x++) {
+			for(int y=0;y<first_column;y++) {
+				System.out.print(matrix[i][j]+" ");
+			}
+		System.out.println();
+		}
+	}
+}
+
