@@ -1,0 +1,33 @@
+package baekjoon;
+import java.util.*;
+
+public class matrix {
+
+   static long []fibonacci;
+   
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      //피사노 주기
+      //메모제이션 오류
+      fibonacci = new long[10000];
+      fibonacci[0]=0;
+      fibonacci[1]=1;
+      
+      int pisano = 15*10;
+      int period = 1000000/pisano;
+      long input_num = sc.nextLong();
+      
+      
+            
+      for(int i=2;i<period;i++) {
+         fibonacci[i]=fibonacci[i-1]+fibonacci[i-2];
+         fibonacci[i]=fibonacci[i]%1000000;
+      }
+      
+      int index = (int)(input_num%period);
+      System.out.println(fibonacci[index]);
+      
+      
+      sc.close();
+   }
+}
